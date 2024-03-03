@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="~{index :: header}"></div>
+    <title>Page visiteur</title>
+</head>
+<body>
+<div th:replace="~{index :: navbar}"></div>
+
+<div class="container" style="margin-top: 30px">
+    <div class="row">
+        <div class="col-sm-3">
+            <h4>Catégories</h4>
+            <ul class="list-group">
+                <a th:href="@{/catalog}"><li class="list-group-item">Tous les produits</li></a>
+                <a href="" th:each="category, iStat:${categories}"
+                   th:href="@{/catalog/category/{id}(id=${category.id})}"><li
+                        class="list-group-item" th:text="${category.name}"></li></a>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <div class="card" style="margin-top: 20px" th:each="product:${products}">
+                <div class="row no-gutters">
+                    <div class="col-sm-5 d-flex justify-content-center">
+                        <img class="" height="150px" width="150px" th:src="'/uploadedImages/'+${product.image}" th:alt="${product.name}">
+                    </div>
+                    <div class="col-sm-7 d-flex justify-content-center">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${product.name}"></h5>
+                            <h6><span th:text="${product.promoPrice != null ? product.promoPrice : product.price}" th:class="${product.promoPrice != null ? 'text-danger font-weight-bold' : ''}"></span> €</h6>
+                            <p th:text="${product.description}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/script.js"></script>
+<div th:replace="~{index :: script}"></div>
+</body>
+</html>

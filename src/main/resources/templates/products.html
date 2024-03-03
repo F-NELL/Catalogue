@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="~{index :: header}"></div>
+<link rel="stylesheet" href="/css/style.css">
+
+    <title>Produits</title>
+</head>
+<body>
+<div th:replace="~{index :: navbar}"></div>
+<div class="container-fluid">
+    <a th:href="@{/admin/products/add}" style="margin: 20px 0" class="btn btn-primary">Ajouter un produit</a>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Nom du produit</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Prix initial</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Suppr</th>
+            <th scope="col">MAJ</th>
+            <th scope="col">Promo</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="product, iStat : ${products}">
+            <th scope="row" th:text="${iStat.index + 1}"></th>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.category.name}"></td>
+            <td th:text="${product.promoPrice != null ? product.promoPrice : product.price}" th:class="${product.promoPrice != null ? 'text-danger font-weight-bold' : ''}"></td>
+
+            <td><img src="" height="100px" width="100px"  th:src="@{${'/uploadedImages/' + product.image}}"></td>
+            <input type="hidden" name="imageUUID" th:value="${product.image}" id="imageUUID"/>
+            <input type="hidden" name="id" th:value="${product.id}"/>
+            <td><a href="" th:href="@{/admin/products/delete/{id}(id=${product.id})}" class="btn btn-danger">Suppr</a></td>
+            <td><a th:href="@{/admin/products/update/{id}(id=${product.id})}" class="btn btn-warning">MAJ</a></td>
+            <td><a th:href="@{/admin/products/promotion/{id}(id=${product.id})}" class="btn btn-success">Promo</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="/js/script.js"></script>
+<div th:replace="~{index :: script}"></div>
+</body>
+</html>
+
+

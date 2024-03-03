@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="~{index :: header}"></div>
+    <title>Ajout de catégories</title>
+</head>
+<body>
+<div th:replace="~{index :: navbar}"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form th:action="@{/admin/categories/add}" method="post" th:object="${category}">
+                <input type="hidden" name="id"  th:field="*{id}">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" class="form-control" required th:field="*{name}" name="name" id="name"  placeholder="Saisir le nom">
+                </div>
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/script.js"></script>
+<div th:replace="~{index :: script}"></div>
+</body>
+</html>

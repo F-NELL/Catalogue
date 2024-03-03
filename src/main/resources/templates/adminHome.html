@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="~{index :: header}"></div>
+    <title>Page d'accueil Admin</title>
+</head>
+<body>
+<div th:replace="~{index :: navbar}"></div>
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Bienvenue sur votre espace admin</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-3 pt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Catégories</h4>
+                        <p class="card-text">Gérer les catégories de produits</p>
+                        <a href="#" th:href="@{/admin/categories}" class="card-link btn btn-primary w-100">Modifier</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 pt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Produits</h4>
+                        <p class="card-text">Gérer les produits du catalogue</p>
+                        <a href="#" th:href="@{/admin/products}" class="card-link btn btn-primary w-100">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="/js/script.js"></script>
+<div th:replace="~{index :: script}"></div>
+</body>
+</html>

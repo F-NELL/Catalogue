@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="~{index :: header}"></div>
+    <title>Promotion</title>
+</head>
+<body>
+<div th:replace="~{index :: navbar}"></div>
+<div class="container">
+    <h3>Promotion</h3>
+    <form th:action="@{/admin/products/promotion/{promoId}(promoId=${product.id})}" method="post" th:object="${promotion}">
+        <input type="hidden" name="id" th:value="${product.id}"/>
+        <input type="hidden" name="promoId" th:value="${product.id}"/>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label for="perPromo">% de Promotion</label>
+                    <input type="text" class="form-control" name="perPromo" id="perPromo" th:field="*{perPromo}" placeholder="Pourcentage de Promotion"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="startPromo">Date de début</label>
+                <input type="text" placeholder="Date de début" class="form-control" id="startPromo" th:field="*{startPromo}">
+                <label for="endPromo">Date de fin</label>
+                <input type="text" placeholder="Date de fin" class="form-control" id="endPromo" th:field="*{endPromo}">
+            </div>
+            <div class="form-group" style="margin-top: 1cm;">
+                <button type="submit" class="btn btn-primary">Valider la promotion</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+<script src="/js/script.js"></script>
+<div th:replace="~{index :: script}"></div>
+<script>
+    flatpickr('#startPromo, #endPromo', {
+        dateFormat: 'd/m/Y',
+        defaultDate: new Date(),
+        minDate: new Date()
+    });
+</script>
+</body>
+</html>
+
